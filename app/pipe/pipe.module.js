@@ -1,0 +1,16 @@
+var core_1 = require("@angular/core");
+var platform_1 = require("nativescript-angular/platform");
+var forms_1 = require("nativescript-angular/forms");
+var router_1 = require("nativescript-angular/router");
+var PipeModule = (function () {
+    function PipeModule() {
+    }
+    return PipeModule;
+}());
+PipeModule = __decorate([
+    core_1.NgModule({
+        imports: [platform_1.NativeScriptModule, forms_1.NativeScriptFormsModule, router_1.NativeScriptRouterModule]
+    })
+], PipeModule);
+exports.PipeModule = PipeModule;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicGlwZS5tb2R1bGUuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJwaXBlLm1vZHVsZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxzQ0FBeUM7QUFDekMsMERBQW1FO0FBQ25FLG9EQUFxRTtBQUNyRSxzREFBdUU7QUFLdkUsSUFBYSxVQUFVO0lBQXZCO0lBQTBCLENBQUM7SUFBRCxpQkFBQztBQUFELENBQUMsQUFBM0IsSUFBMkI7QUFBZCxVQUFVO0lBSHRCLGVBQVEsQ0FBQztRQUNOLE9BQU8sRUFBRSxDQUFDLDZCQUFrQixFQUFFLCtCQUF1QixFQUFFLGlDQUF3QixDQUFDO0tBQ25GLENBQUM7R0FDVyxVQUFVLENBQUk7QUFBZCxnQ0FBVSIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IE5nTW9kdWxlIH0gZnJvbSAnQGFuZ3VsYXIvY29yZSc7XG5pbXBvcnQgeyBOYXRpdmVTY3JpcHRNb2R1bGUgfSBmcm9tICduYXRpdmVzY3JpcHQtYW5ndWxhci9wbGF0Zm9ybSc7XG5pbXBvcnQgeyBOYXRpdmVTY3JpcHRGb3Jtc01vZHVsZSB9IGZyb20gJ25hdGl2ZXNjcmlwdC1hbmd1bGFyL2Zvcm1zJztcbmltcG9ydCB7IE5hdGl2ZVNjcmlwdFJvdXRlck1vZHVsZSB9IGZyb20gJ25hdGl2ZXNjcmlwdC1hbmd1bGFyL3JvdXRlcic7XG5cbkBOZ01vZHVsZSh7XG4gICAgaW1wb3J0czogW05hdGl2ZVNjcmlwdE1vZHVsZSwgTmF0aXZlU2NyaXB0Rm9ybXNNb2R1bGUsIE5hdGl2ZVNjcmlwdFJvdXRlck1vZHVsZV1cbn0pXG5leHBvcnQgY2xhc3MgUGlwZU1vZHVsZSB7IH1cbiJdfQ==

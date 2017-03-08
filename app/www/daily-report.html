@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+
+<head>
+
+    <script src="./lib/es6-promise.min.js"></script>
+    <script src="./lib/nativescript-webview-interface.js"></script>
+    <script src="./lib/Chart.min.js"></script>
+    <style>
+        #container {
+            width: 300px;
+            margin: 0px auto;
+            text-align: center;
+        }
+        .noData{
+            text-align: center;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="container">
+        <canvas  id="myChart" width="300"></canvas>
+        <!--<div *ngIf="!showChart" class="noData">还没有数据，快去记一笔吧！</div>-->
+    </div>
+    <script>
+        var oWebViewInterface = window.nsWebViewInterface;
+        var container = document.getElementById("container");
+        var canvas = document.getElementById("myChart");
+        var myChart = null;
+        // var showChart = true;
+        window.loadChartData = function (data) {
+            loadChart(data);
+        }
+
+        window.setChartHeight = function(height) {
+            canvas.height = height;
+        }
+
+        function loadChart(chartData) {
+            // if(chartData === null ){
+            //     showChart = false;
+            //     return;
+            // }
+            var ctx = canvas.getContext("2d");
+
+            if (myChart) {
+                myChart.destroy();
+            }
+
+            myChart = new Chart(ctx, {
+                type: 'horizontalBar',
+                data: chartData,
+                options: {
+                    responsive: false,
+                    maintainAspectRatio: true,
+                    legend: {
+                        hidden: true,
+                        display: false,
+                    },
+                    scales: {
+                        xAxes: [{
+                            gridLines: {
+                                display: false,
+                            }
+                        }],
+                        yAxes: [{
+                            gridLines: {
+                                display: false,
+                            }
+                        }]
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

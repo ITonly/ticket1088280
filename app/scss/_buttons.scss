@@ -1,0 +1,61 @@
+.btn-small{
+  color: $btn-color;
+  height: 35;
+  background-color: transparent;
+  &.btn-active:highlighted{
+    color: $white;
+    background-color:$btn-color-outline-highlighted;
+  }
+  @include button-base($btn-color, 5, 5, 2, 2, $btn-font-size - 4, $btn-radius,0);
+}
+
+.btn{
+  color: $btn-color;
+  background-color: transparent;
+  min-height: 36;
+  min-width: 64;
+  &.btn-active:highlighted{
+    color: $white;
+    background-color:$btn-color-outline-highlighted;
+  }
+  @include button-base($btn-color, $btn-padding-y, $btn-padding-x, $btn-margin-y, $btn-margin-x, $btn-font-size, $btn-radius,0);
+}
+
+.btn-primary {
+  color: $white;
+  background-color: $btn-color;
+  border-color: $btn-color;
+  border-radius: 3;
+  &.btn-active:highlighted{
+    border-color:$btn-color-secondary;
+    background-color:$btn-color-secondary;
+  }
+}
+
+.btn-secondary {
+  color: $btn-color;
+  background-color: transparent;
+  border-color: $btn-color;
+  border-width: 1;
+  border-radius: 15;
+  &.btn-active:highlighted{
+      background-color:$btn-color-outline-highlighted;
+  }
+}
+
+.btn-danger {
+  color: $white;
+  background-color: $btn-color-danger;
+  border-color: $btn-color;
+  height: 40;
+  border-radius: 3;
+  &.btn-active:highlighted{
+    border-color:$btn-color-secondary;
+    background-color:$btn-color-secondary;
+  }
+}
+.btn[isEnabled=false]{
+  color:$btn-color-disabled;
+  background-color: $grey;
+  border-color: $grey;
+}

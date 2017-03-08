@@ -1,0 +1,7 @@
+exports.routes = [
+    {
+        path: '',
+        loadChildren: './component/transaction/transaction-image.module#TransactionImageModule',
+    }
+];
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYXBwLnJvdXRlcy5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbImFwcC5yb3V0ZXMudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBR2EsUUFBQSxNQUFNLEdBQVc7SUFDMUI7UUFDSSxJQUFJLEVBQUUsRUFBRTtRQUNSLFlBQVksRUFBRSx5RUFBeUU7S0FDMUY7Q0FDSixDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgUm91dGVzIH0gZnJvbSAnQGFuZ3VsYXIvcm91dGVyJztcbmltcG9ydCB7IENvbXBvbmVudCB9IGZyb20gJ0Bhbmd1bGFyL2NvcmUnO1xuXG5leHBvcnQgY29uc3Qgcm91dGVzOiBSb3V0ZXMgPSBbXG4gICAge1xuICAgICAgICBwYXRoOiAnJyxcbiAgICAgICAgbG9hZENoaWxkcmVuOiAnLi9jb21wb25lbnQvdHJhbnNhY3Rpb24vdHJhbnNhY3Rpb24taW1hZ2UubW9kdWxlI1RyYW5zYWN0aW9uSW1hZ2VNb2R1bGUnLFxuICAgIH1cbl07XG4iXX0=

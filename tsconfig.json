@@ -1,0 +1,29 @@
+{
+    "atom": {
+        "rewriteTsconfig": false
+    },
+    "compilerOptions": {
+        "noEmitOnError": true,
+        "noEmitHelpers": true,
+        "target": "es5",
+        "module": "commonjs",
+        "declaration": false,
+        "noImplicitAny": false,
+        "noImplicitUseStrict": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "pretty": true,
+        "lib": [
+            "es2016"
+        ]
+    },
+    "types": [
+        "lodash",
+        "cryptojs"
+    ],
+    "exclude": [
+        "node_modules",
+        "platforms",
+        "**/*.aot.ts"
+    ]
+}

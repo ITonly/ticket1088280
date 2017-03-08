@@ -1,0 +1,176 @@
+var webpack = require("webpack");
+var nsWebpack = require("nativescript-dev-webpack");
+var nativescriptTarget = require("nativescript-dev-webpack/nativescript-target");
+var path = require("path");
+var CopyWebpackPlugin = require("copy-webpack-plugin");
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var AotPlugin = require("@ngtools/webpack").AotPlugin;
+
+var excludesMangle = nsWebpack.uglifyMangleExcludes;
+excludesMangle.push('DropDown', 'WebImage');
+
+module.exports = function (platform, destinationApp) {
+    if (!destinationApp) {
+        //Default destination inside platforms/<platform>/...
+        destinationApp = nsWebpack.getAppPath(platform);
+    }
+    var entry = {};
+    //Discover entry module from package.json
+    entry.bundle = "./" + nsWebpack.getEntryModule();
+    //Vendor entry with third party libraries.
+    entry.vendor = "./vendor";
+    //app.css bundle
+    entry["app.css"] = "./app.css";
+
+    var plugins = [
+        new ExtractTextPlugin("app.css"),
+        //Vendor libs go to the vendor.js chunk
+        new webpack.optimize.CommonsChunkPlugin({
+            name: ["vendor"]
+        }),
+        //Define useful constants like TNS_WEBPACK
+        new webpack.DefinePlugin({
+            global: "global",
+            __dirname: "__dirname",
+            "global.TNS_WEBPACK": "true"
+        }),
+        //Copy assets to out dir. Add your own globs as needed.
+        new CopyWebpackPlugin([{
+                from: "app.css"
+            },
+            {
+                from: "css/**"
+            },
+            {
+                from: "fonts/**"
+            },
+            {
+                from: "**/*.jpg"
+            },
+            {
+                from: "**/*.png"
+            },
+            {
+                from: "**/*.xml"
+            },
+            {
+                from: "www/**"
+            },
+        ], {
+            ignore: ["App_Resources/**"]
+        }),
+        //Generate a bundle starter script and activate it in package.json
+        new nsWebpack.GenerateBundleStarterPlugin([
+            "./vendor",
+            "./bundle",
+        ]),
+        // Exclude explicitly required but never declared in XML elements.
+        // Loader nativescript-dev-webpack/tns-xml-loader should be added for *.xml/html files.
+        new nsWebpack.ExcludeUnusedElementsPlugin(),
+        //Angular AOT compiler
+        new AotPlugin({
+            tsConfigPath: "tsconfig.aot.json",
+            entryModule: path.resolve(__dirname, "app/app.module#AppModule"),
+            typeChecking: false
+        }),
+    ];
+
+    if (process.env.npm_config_uglify) {
+        //Work around an Android issue by setting compress = false
+        var compress = platform !== "android";
+        plugins.push(new webpack.optimize.UglifyJsPlugin({
+            mangle: {
+                except: excludesMangle,
+            },
+            compress: compress,
+            comments: false
+        }));
+    }
+
+    return {
+        context: path.resolve("./app"),
+        target: nativescriptTarget,
+        entry: entry,
+        output: {
+            pathinfo: true,
+            path: path.resolve(destinationApp),
+            libraryTarget: "commonjs2",
+            filename: "[name].js",
+        },
+        resolve: {
+            //Resolve platform-specific modules like module.android.js
+            extensions: [
+                ".aot.ts",
+                ".ts",
+                ".js",
+                ".css",
+                ".scss",
+                "." + platform + ".ts",
+                "." + platform + ".js",
+                "." + platform + ".css",
+                "." + platform + ".scss"
+            ],
+            //Resolve {N} system modules from tns-core-modules
+            modules: [
+                "node_modules/tns-core-modules",
+                "node_modules"
+            ]
+        },
+        resolveLoader: {
+            // An array of directory names to be resolved to the current directory
+            modules: ['node_modules', path.resolve(__dirname, 'config')],
+        },
+        node: {
+            //Disable node shims that conflict with NativeScript
+            "http": false,
+            "timers": false,
+            "setImmediate": false,
+        },
+        module: {
+            loaders: [{
+                    test: /\.html$|\.xml$/,
+                    loaders: [
+                        "raw-loader",
+                        'nativescript-dev-webpack/tns-xml-loader'
+                    ]
+                },
+                // Root app.css file gets extracted with bundled dependencies
+                {
+                    test: /app\.css$/,
+                    loader: ExtractTextPlugin.extract([
+                        "resolve-url-loader",
+                        "css-loader",
+                        "nativescript-dev-webpack/platform-css-loader",
+                    ]),
+                },
+                // Other CSS files get bundled using the raw loader
+                {
+                    test: /\.css$/,
+                    exclude: /app\.css$/,
+                    loaders: [
+                        "raw-loader",
+                    ]
+                },
+                // Compile TypeScript files with ahead-of-time compiler.
+                {
+                    test: /\.ts$/,
+                    loaders: [
+                        "remove-console",
+                        "nativescript-dev-webpack/tns-aot-loader",
+                        "@ngtools/webpack"
+                    ]
+                },
+                // SASS support
+                {
+                    test: /\.scss$/,
+                    loaders: [
+                        "raw-loader",
+                        "resolve-url-loader",
+                        "sass-loader"
+                    ]
+                },
+            ]
+        },
+        plugins: plugins,
+    };
+};

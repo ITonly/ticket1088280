@@ -1,0 +1,22 @@
+<StackLayout>
+	<gpm-action-bar height="5%" actionTitle="添加附件" showNav="true" useCustomTap="true" (onNavTap)="onNavBtnTap()"></gpm-action-bar>
+	<ActionBarExtension *ngIf="!hideCarry">
+		<ActionItem ios.position="right" android.position="right">
+			<Label (tap)="onSave()" [text]="'fa-floppy-o' | fonticon" class="fa action-item-left-main"></Label>
+		</ActionItem>
+	</ActionBarExtension>
+	<WrapLayout orientation="horizontal" class="wrapStyle">
+		<StackLayout orientation="horizontal" class="m-r-10 m-t-10" *ngFor="let item of cacheImage">
+			<WebImage *ngIf="!id" [width]="imageWidth/3" [height]="imageWidth/3" class="img-rounded" src="{{item.surl}}" 
+				stretch="aspectFill"></WebImage>
+			<Image *ngIf="!hideCarry " src="~/images/close.png" class="annex-preview" [width]="imageWidth/15" [height]="imageWidth/15"
+						[marginLeft]="-imageWidth/15" (tap)="deleteImage(item.id)"></Image>
+		</StackLayout>
+		<GridLayout rows="auto,auto" columns="*" *ngIf="!hideCamera" [width]="imageWidth/3" [height]="imageWidth/3" backgroundColor="#f2f2f2"
+			class="m-t-10" (tap)="chooseWay()">
+			<Label row="0" class="fa addIcon" [text]="'fa-camera' | fonticon"  [marginTop]="imageWidth/12"
+				[marginBottom]="imageWidth/30"></Label>
+			<Label row="1" class="addText" text="照片"></Label>
+		</GridLayout>
+	</WrapLayout>
+</StackLayout>

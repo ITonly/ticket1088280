@@ -1,0 +1,24 @@
+.alert {
+  padding: 5 8 5 8;
+  margin-bottom: 3;
+  border: 1 solid transparent;
+  border-radius: 5;
+}
+
+.alert-danger {
+  color: $alert-danger-text;
+  background-color: $alert-danger-bg;
+  border-color: $alert-danger-border;
+}
+
+.alert-success {
+  color: $alert-success-text;
+  background-color: $alert-success-bg;
+  border-color: $alert-success-border;
+}
+
+.validation-error {
+  color: $alert-danger-text;
+  font-style: italic;
+  font-size: 14;
+}

@@ -1,0 +1,108 @@
+.list-group {
+    .list-group-item {
+        color: $text-color;
+        padding-top: 20;
+        // padding-bottom: 20;
+        // padding-left: 20;
+        // padding-right: 20;
+        font-size: 16;
+
+        .thumb {
+            stretch: fill;
+            width: 40;
+            height: 40;
+            margin-right: 10;
+        }
+
+        &.active {
+            background-color: $grey;
+        }
+        .list-group-item-text-primary{
+            color: $primary;
+            font-size: 14;
+        }
+        .list-group-item-heading {}
+
+        .list-group-item-text {
+            color: $text-color-light;
+            font-size: 14;
+        }
+    }
+}
+.listItemLeftSwipeGridLayout {
+    background-color: $red;
+}
+.selector-list-group {
+    .selector-list-group-item {
+        text-align: center;
+        vertical-align: middle;
+        padding: 5;
+        font-size: 14;
+    }
+}
+
+.list-normal {
+    color: $btn-color;
+    background-color: transparent;
+    border-color: $btn-color;
+    border-width: 1;
+    border-radius: 10;
+    padding: 3 1;
+    text-align: center;
+    margin: 0 3;
+}
+
+.list-selected {
+    color: $white;
+    background-color: $btn-color;
+    border-color: $btn-color;
+    border-width: 1;
+    border-radius: 10;
+    text-align: center;
+    padding: 3 1;
+    margin: 0 3;
+}
+
+.square-list-normal {
+    color: $btn-color;
+    background-color: transparent;
+    border-color: $btn-color;
+    border-width: 1;
+    border-radius: 5;
+    padding: 10 1;
+    text-align: center;
+    margin: 0 3;
+}
+
+.square-list-selected {
+    color: $white;
+    background-color: $btn-color;
+    border-color: $btn-color;
+    border-width: 1;
+    border-radius: 5;
+    text-align: center;
+    padding: 10 1;
+    margin: 0 3;
+}
+
+.list-form {
+  color: $text-color;
+  padding-top: 20;
+  .list-item {
+    padding: 2 10 2 0;
+    height: 48;
+    .list-right-section {
+      margin:0 16 0 16;
+    }
+    .list-left-label {
+      horizontal-align:left;
+      margin-left: 10;
+      text-align: left;
+      font-size: 15;
+      background-color: transparent;
+      border-width: 0.1;
+      width: 80%;
+      vertical-align:center;
+    }
+  }
+}

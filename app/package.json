@@ -1,0 +1,14 @@
+{
+    "private": false,
+    "nativescript": {
+        "id": "com.concordya.mobile.gp2"
+    },
+    "name": "管有方",
+    "main": "main.js",
+    "version": "2.2.3",
+    "author": "Telerik <support@telerik.com>",
+    "description": "Guan Plus 2.0 Mobile App",
+    "android": {
+        "v8Flags": "--expose_gc"
+    }
+}

@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+
+<head>
+
+    <script src="./lib/es6-promise.min.js"></script>
+    <script src="./lib/nativescript-webview-interface.js"></script>
+    <script src="./lib/Chart.min.js"></script>
+    <style>
+        #container {
+            width: 300px;
+            margin: 0px auto;
+            text-align: center;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="container">
+        <canvas id="myChart" width="300"></canvas>
+        
+    </div>
+    <script>
+        var oWebViewInterface = window.nsWebViewInterface;
+        var container = document.getElementById("container");
+        var canvas = document.getElementById("myChart");
+        var myChart = null;
+
+        window.loadChartData = function (data) {
+            loadChart(data);
+        };
+
+        window.setChartHeight = function(height) {
+            canvas.height = height;
+        }
+
+        function loadChart(chartData) {
+            var ctx = canvas.getContext("2d");
+
+            if (myChart) {
+                myChart.destroy();
+            }
+
+            myChart = new Chart(ctx, {
+                type: 'line',
+                data: chartData,
+                options: {
+                    responsive: false,
+                    maintainAspectRatio: true,
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
